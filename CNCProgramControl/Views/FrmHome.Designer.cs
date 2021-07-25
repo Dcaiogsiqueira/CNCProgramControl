@@ -31,6 +31,7 @@ namespace CNCProgramControl
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHome));
             this.PnlTop = new System.Windows.Forms.Panel();
+            this.BtnSearch = new System.Windows.Forms.Button();
             this.BtnMin = new System.Windows.Forms.Button();
             this.BtnRest = new System.Windows.Forms.Button();
             this.BtnMax = new System.Windows.Forms.Button();
@@ -38,8 +39,9 @@ namespace CNCProgramControl
             this.BtnView = new System.Windows.Forms.Button();
             this.BtnFile = new System.Windows.Forms.Button();
             this.PnlFull = new System.Windows.Forms.Panel();
+            this.PnlForms = new System.Windows.Forms.Panel();
             this.TxtSearch = new System.Windows.Forms.TextBox();
-            this.PnlFile = new System.Windows.Forms.Panel();
+            this.PnlOpcoes = new System.Windows.Forms.Panel();
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnTorno = new System.Windows.Forms.Button();
             this.BtnCentro = new System.Windows.Forms.Button();
@@ -48,13 +50,15 @@ namespace CNCProgramControl
             this.label1 = new System.Windows.Forms.Label();
             this.PnlTop.SuspendLayout();
             this.PnlFull.SuspendLayout();
-            this.PnlFile.SuspendLayout();
+            this.PnlForms.SuspendLayout();
+            this.PnlOpcoes.SuspendLayout();
             this.PnlFooter.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlTop
             // 
             this.PnlTop.BackColor = System.Drawing.Color.White;
+            this.PnlTop.Controls.Add(this.BtnSearch);
             this.PnlTop.Controls.Add(this.BtnMin);
             this.PnlTop.Controls.Add(this.BtnRest);
             this.PnlTop.Controls.Add(this.BtnMax);
@@ -69,6 +73,22 @@ namespace CNCProgramControl
             this.PnlTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseDown);
             this.PnlTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseMove);
             this.PnlTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseUp);
+            // 
+            // BtnSearch
+            // 
+            this.BtnSearch.BackColor = System.Drawing.Color.White;
+            this.BtnSearch.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BtnSearch.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(249)))));
+            this.BtnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSearch.Font = new System.Drawing.Font("Courier New", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnSearch.Location = new System.Drawing.Point(198, 0);
+            this.BtnSearch.Name = "BtnSearch";
+            this.BtnSearch.Size = new System.Drawing.Size(99, 38);
+            this.BtnSearch.TabIndex = 3;
+            this.BtnSearch.Text = "Procurar";
+            this.BtnSearch.UseVisualStyleBackColor = false;
+            this.BtnSearch.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnSearch_MouseClick);
             // 
             // BtnMin
             // 
@@ -168,14 +188,11 @@ namespace CNCProgramControl
             this.BtnFile.TabIndex = 0;
             this.BtnFile.Text = "Arquivo";
             this.BtnFile.UseVisualStyleBackColor = false;
-            this.BtnFile.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnFile_MouseClick);
             // 
             // PnlFull
             // 
             this.PnlFull.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PnlFull.Controls.Add(this.TxtSearch);
-            this.PnlFull.Controls.Add(this.PnlFile);
-            this.PnlFull.Controls.Add(this.PnlFooter);
+            this.PnlFull.Controls.Add(this.PnlForms);
             this.PnlFull.Controls.Add(this.PnlTop);
             this.PnlFull.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlFull.Location = new System.Drawing.Point(0, 0);
@@ -183,28 +200,39 @@ namespace CNCProgramControl
             this.PnlFull.Size = new System.Drawing.Size(1000, 750);
             this.PnlFull.TabIndex = 1;
             // 
+            // PnlForms
+            // 
+            this.PnlForms.Controls.Add(this.TxtSearch);
+            this.PnlForms.Controls.Add(this.PnlOpcoes);
+            this.PnlForms.Controls.Add(this.PnlFooter);
+            this.PnlForms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlForms.Location = new System.Drawing.Point(0, 38);
+            this.PnlForms.Name = "PnlForms";
+            this.PnlForms.Size = new System.Drawing.Size(998, 710);
+            this.PnlForms.TabIndex = 2;
+            // 
             // TxtSearch
             // 
-            this.TxtSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TxtSearch.Font = new System.Drawing.Font("Courier New", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TxtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtSearch.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TxtSearch.Location = new System.Drawing.Point(0, 38);
             this.TxtSearch.Name = "TxtSearch";
             this.TxtSearch.Size = new System.Drawing.Size(998, 29);
             this.TxtSearch.TabIndex = 3;
             this.TxtSearch.Visible = false;
             // 
-            // PnlFile
+            // PnlOpcoes
             // 
-            this.PnlFile.BackColor = System.Drawing.Color.White;
-            this.PnlFile.Controls.Add(this.BtnBackup);
-            this.PnlFile.Controls.Add(this.BtnTorno);
-            this.PnlFile.Controls.Add(this.BtnCentro);
-            this.PnlFile.Location = new System.Drawing.Point(1, 40);
-            this.PnlFile.Margin = new System.Windows.Forms.Padding(0);
-            this.PnlFile.Name = "PnlFile";
-            this.PnlFile.Size = new System.Drawing.Size(300, 38);
-            this.PnlFile.TabIndex = 2;
-            this.PnlFile.Visible = false;
+            this.PnlOpcoes.Controls.Add(this.BtnBackup);
+            this.PnlOpcoes.Controls.Add(this.BtnTorno);
+            this.PnlOpcoes.Controls.Add(this.BtnCentro);
+            this.PnlOpcoes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlOpcoes.Location = new System.Drawing.Point(0, 0);
+            this.PnlOpcoes.Name = "PnlOpcoes";
+            this.PnlOpcoes.Size = new System.Drawing.Size(998, 38);
+            this.PnlOpcoes.TabIndex = 2;
+            this.PnlOpcoes.Visible = false;
             // 
             // BtnBackup
             // 
@@ -217,9 +245,10 @@ namespace CNCProgramControl
             this.BtnBackup.Location = new System.Drawing.Point(198, 0);
             this.BtnBackup.Name = "BtnBackup";
             this.BtnBackup.Size = new System.Drawing.Size(99, 38);
-            this.BtnBackup.TabIndex = 3;
+            this.BtnBackup.TabIndex = 6;
             this.BtnBackup.Text = "Backup";
             this.BtnBackup.UseVisualStyleBackColor = false;
+            this.BtnBackup.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnBackup_MouseClick);
             // 
             // BtnTorno
             // 
@@ -232,9 +261,10 @@ namespace CNCProgramControl
             this.BtnTorno.Location = new System.Drawing.Point(99, 0);
             this.BtnTorno.Name = "BtnTorno";
             this.BtnTorno.Size = new System.Drawing.Size(99, 38);
-            this.BtnTorno.TabIndex = 2;
+            this.BtnTorno.TabIndex = 5;
             this.BtnTorno.Text = "Torno";
             this.BtnTorno.UseVisualStyleBackColor = false;
+            this.BtnTorno.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnTorno_MouseClick);
             // 
             // BtnCentro
             // 
@@ -247,7 +277,7 @@ namespace CNCProgramControl
             this.BtnCentro.Location = new System.Drawing.Point(0, 0);
             this.BtnCentro.Name = "BtnCentro";
             this.BtnCentro.Size = new System.Drawing.Size(99, 38);
-            this.BtnCentro.TabIndex = 1;
+            this.BtnCentro.TabIndex = 4;
             this.BtnCentro.Text = "Centro";
             this.BtnCentro.UseVisualStyleBackColor = false;
             this.BtnCentro.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnCentro_MouseClick);
@@ -258,7 +288,7 @@ namespace CNCProgramControl
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlFooter.Controls.Add(this.label2);
             this.PnlFooter.Controls.Add(this.label1);
-            this.PnlFooter.Location = new System.Drawing.Point(0, 710);
+            this.PnlFooter.Location = new System.Drawing.Point(0, 669);
             this.PnlFooter.Name = "PnlFooter";
             this.PnlFooter.Size = new System.Drawing.Size(998, 38);
             this.PnlFooter.TabIndex = 1;
@@ -303,8 +333,9 @@ namespace CNCProgramControl
             this.Text = "Form1";
             this.PnlTop.ResumeLayout(false);
             this.PnlFull.ResumeLayout(false);
-            this.PnlFull.PerformLayout();
-            this.PnlFile.ResumeLayout(false);
+            this.PnlForms.ResumeLayout(false);
+            this.PnlForms.PerformLayout();
+            this.PnlOpcoes.ResumeLayout(false);
             this.PnlFooter.ResumeLayout(false);
             this.PnlFooter.PerformLayout();
             this.ResumeLayout(false);
@@ -320,15 +351,17 @@ namespace CNCProgramControl
         private System.Windows.Forms.Panel PnlFooter;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel PnlFile;
-        private System.Windows.Forms.Button BtnCentro;
-        private System.Windows.Forms.Button BtnBackup;
-        private System.Windows.Forms.Button BtnTorno;
-        private System.Windows.Forms.TextBox TxtSearch;
         private System.Windows.Forms.Button BtnClose;
         private System.Windows.Forms.Button BtnMin;
         private System.Windows.Forms.Button BtnRest;
         private System.Windows.Forms.Button BtnMax;
+        private System.Windows.Forms.Panel PnlForms;
+        private System.Windows.Forms.Button BtnSearch;
+        private System.Windows.Forms.TextBox TxtSearch;
+        private System.Windows.Forms.Panel PnlOpcoes;
+        private System.Windows.Forms.Button BtnBackup;
+        private System.Windows.Forms.Button BtnTorno;
+        private System.Windows.Forms.Button BtnCentro;
     }
 }
 
