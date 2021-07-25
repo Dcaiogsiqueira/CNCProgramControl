@@ -16,3 +16,4 @@ C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Deb
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\ref\CNCProgramControl.dll
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.pdb
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.genruntimeconfig.cache
+C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.Properties.Resources.resources

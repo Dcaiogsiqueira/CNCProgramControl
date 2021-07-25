@@ -41,5 +41,60 @@ namespace CNCProgramControl
         }
 
         #endregion
+
+        private void BtnFile_MouseClick(object sender, MouseEventArgs e)
+        {
+            ControllPnl();
+        }
+
+        private void BtnCentro_MouseClick(object sender, MouseEventArgs e)
+        {
+            ControllPnl();
+            Buscador();
+
+        }
+
+        private void ControllPnl()
+        {
+            if (PnlFile.Visible)
+            {
+                BtnFile.BackColor = Color.FromArgb(255, 255, 255);
+                PnlFile.Visible = false;
+            }
+            else
+            {
+                BtnFile.BackColor = Color.FromArgb(245, 246, 247);
+                PnlFile.Visible = true;
+            }
+        }
+
+        private void Buscador()
+        {
+            TxtSearch.Visible = true;
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnMax_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            BtnMax.Visible = false;
+            BtnRest.Visible = true;
+        }
+
+        private void BtnRest_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            BtnRest.Visible = false;
+            BtnMax.Visible = true;
+        }
+
+        private void BtnMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }
