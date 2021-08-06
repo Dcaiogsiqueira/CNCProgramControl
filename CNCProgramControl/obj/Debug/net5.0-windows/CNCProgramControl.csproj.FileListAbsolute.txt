@@ -5,7 +5,6 @@ C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\bin\Deb
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\bin\Debug\net5.0-windows\CNCProgramControl.dll
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\bin\Debug\net5.0-windows\ref\CNCProgramControl.dll
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\bin\Debug\net5.0-windows\CNCProgramControl.pdb
-C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.csproj.AssemblyReference.cache
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.FrmHome.resources
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.csproj.GenerateResource.cache
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.GeneratedMSBuildEditorConfig.editorconfig
@@ -17,3 +16,7 @@ C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Deb
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.pdb
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.genruntimeconfig.cache
 C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.Properties.Resources.resources
+C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.Views.FrmConfig.resources
+C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.csproj.CopyComplete
+C:\Users\Caio\Documents\MeusProjetos\CNCProgramControl\CNCProgramControl\obj\Debug\net5.0-windows\CNCProgramControl.csproj.AssemblyReference.cache

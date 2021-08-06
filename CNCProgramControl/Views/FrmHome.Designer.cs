@@ -31,6 +31,7 @@ namespace CNCProgramControl
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHome));
             this.PnlTop = new System.Windows.Forms.Panel();
+            this.BtnSettings = new System.Windows.Forms.Button();
             this.BtnSearch = new System.Windows.Forms.Button();
             this.BtnMin = new System.Windows.Forms.Button();
             this.BtnRest = new System.Windows.Forms.Button();
@@ -40,8 +41,11 @@ namespace CNCProgramControl
             this.BtnFile = new System.Windows.Forms.Button();
             this.PnlFull = new System.Windows.Forms.Panel();
             this.PnlForms = new System.Windows.Forms.Panel();
+            this.LstProg = new System.Windows.Forms.ListBox();
+            this.RTBProgram = new System.Windows.Forms.RichTextBox();
             this.TxtSearch = new System.Windows.Forms.TextBox();
             this.PnlOpcoes = new System.Windows.Forms.Panel();
+            this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnTorno = new System.Windows.Forms.Button();
             this.BtnCentro = new System.Windows.Forms.Button();
@@ -58,6 +62,7 @@ namespace CNCProgramControl
             // PnlTop
             // 
             this.PnlTop.BackColor = System.Drawing.Color.White;
+            this.PnlTop.Controls.Add(this.BtnSettings);
             this.PnlTop.Controls.Add(this.BtnSearch);
             this.PnlTop.Controls.Add(this.BtnMin);
             this.PnlTop.Controls.Add(this.BtnRest);
@@ -73,6 +78,22 @@ namespace CNCProgramControl
             this.PnlTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseDown);
             this.PnlTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseMove);
             this.PnlTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseUp);
+            // 
+            // BtnSettings
+            // 
+            this.BtnSettings.BackColor = System.Drawing.Color.White;
+            this.BtnSettings.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BtnSettings.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(249)))));
+            this.BtnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSettings.Font = new System.Drawing.Font("Courier New", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnSettings.Location = new System.Drawing.Point(297, 0);
+            this.BtnSettings.Name = "BtnSettings";
+            this.BtnSettings.Size = new System.Drawing.Size(136, 38);
+            this.BtnSettings.TabIndex = 4;
+            this.BtnSettings.Text = "Configurações";
+            this.BtnSettings.UseVisualStyleBackColor = false;
+            this.BtnSettings.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnSettings_MouseClick);
             // 
             // BtnSearch
             // 
@@ -202,6 +223,8 @@ namespace CNCProgramControl
             // 
             // PnlForms
             // 
+            this.PnlForms.Controls.Add(this.LstProg);
+            this.PnlForms.Controls.Add(this.RTBProgram);
             this.PnlForms.Controls.Add(this.TxtSearch);
             this.PnlForms.Controls.Add(this.PnlOpcoes);
             this.PnlForms.Controls.Add(this.PnlFooter);
@@ -210,6 +233,28 @@ namespace CNCProgramControl
             this.PnlForms.Name = "PnlForms";
             this.PnlForms.Size = new System.Drawing.Size(998, 710);
             this.PnlForms.TabIndex = 2;
+            // 
+            // LstProg
+            // 
+            this.LstProg.FormattingEnabled = true;
+            this.LstProg.ItemHeight = 15;
+            this.LstProg.Location = new System.Drawing.Point(12, 77);
+            this.LstProg.Name = "LstProg";
+            this.LstProg.Size = new System.Drawing.Size(171, 574);
+            this.LstProg.TabIndex = 5;
+            this.LstProg.Visible = false;
+            this.LstProg.SelectedIndexChanged += new System.EventHandler(this.LstProg_SelectedIndexChanged);
+            // 
+            // RTBProgram
+            // 
+            this.RTBProgram.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RTBProgram.Location = new System.Drawing.Point(435, 84);
+            this.RTBProgram.Name = "RTBProgram";
+            this.RTBProgram.Size = new System.Drawing.Size(552, 564);
+            this.RTBProgram.TabIndex = 4;
+            this.RTBProgram.Text = "";
+            this.RTBProgram.Visible = false;
             // 
             // TxtSearch
             // 
@@ -224,6 +269,7 @@ namespace CNCProgramControl
             // 
             // PnlOpcoes
             // 
+            this.PnlOpcoes.Controls.Add(this.BtnBuscar);
             this.PnlOpcoes.Controls.Add(this.BtnBackup);
             this.PnlOpcoes.Controls.Add(this.BtnTorno);
             this.PnlOpcoes.Controls.Add(this.BtnCentro);
@@ -233,6 +279,23 @@ namespace CNCProgramControl
             this.PnlOpcoes.Size = new System.Drawing.Size(998, 38);
             this.PnlOpcoes.TabIndex = 2;
             this.PnlOpcoes.Visible = false;
+            // 
+            // BtnBuscar
+            // 
+            this.BtnBuscar.BackColor = System.Drawing.Color.White;
+            this.BtnBuscar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.BtnBuscar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(232)))), ((int)(((byte)(249)))));
+            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscar.Font = new System.Drawing.Font("Courier New", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscar.Image")));
+            this.BtnBuscar.Location = new System.Drawing.Point(297, 0);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(35, 38);
+            this.BtnBuscar.TabIndex = 7;
+            this.BtnBuscar.UseVisualStyleBackColor = false;
+            this.BtnBuscar.Visible = false;
+            this.BtnBuscar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BtnBuscar_MouseClick);
             // 
             // BtnBackup
             // 
@@ -362,6 +425,10 @@ namespace CNCProgramControl
         private System.Windows.Forms.Button BtnBackup;
         private System.Windows.Forms.Button BtnTorno;
         private System.Windows.Forms.Button BtnCentro;
+        private System.Windows.Forms.RichTextBox RTBProgram;
+        private System.Windows.Forms.Button BtnSettings;
+        private System.Windows.Forms.ListBox LstProg;
+        private System.Windows.Forms.Button BtnBuscar;
     }
 }
 
