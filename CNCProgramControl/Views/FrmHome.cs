@@ -120,7 +120,7 @@ namespace CNCProgramControl
                 BtnSearch.BackColor = Color.FromArgb(204, 232, 249);
                 PnlOpcoes.Visible = true;
             }
-            else\sddddddddddddddddddddddddddddddddddddddddddddddddddddddddQSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXDEEEEEEEEEEW222222222222222222222222222222222SED322R
+            else
             {
                 procurar = false;
                 BtnView.Visible = true;
@@ -145,14 +145,21 @@ namespace CNCProgramControl
                 LstProg.Visible = true;
                 TxtSearch.Visible = true;
                 RTBProgram.Visible = true;
-                var json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\diretorios.json");
-                var diretorio = JsonConvert.DeserializeObject<List<Diretorio>>(json);
-                String enderecoCentro = diretorio[0].Endereco;
-                DirectoryInfo dir_files = new DirectoryInfo(enderecoCentro);
-                FileInfo[] files2 = dir_files.GetFiles("*", SearchOption.TopDirectoryOnly);
-
+                try
+                {
+                    var json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\diretorios.json");
+                    var diretorio = JsonConvert.DeserializeObject<List<Diretorio>>(json);
+                    String enderecoCentro = diretorio[0].Endereco;
+                    DirectoryInfo dir_files = new DirectoryInfo(enderecoCentro);
+                    FileInfo[] files2 = dir_files.GetFiles("*", SearchOption.TopDirectoryOnly);
+               
                 foreach (var fil in files2) { LstProg.Items.Add(fil.Name); }
                 Endereco = enderecoCentro;
+                }
+                catch (Exception ) 
+                {
+                    MessageBox.Show("Caminho invalido");
+                }
             }
             else
             {

@@ -1,14 +1,14 @@
-﻿[
+[
   {
     "nome": "centro",
-    "endereco": "C:\\Users\\Caio\\Desktop\\Programas\\Centro"
+    "endereco": "C:\\Users\\Caio\\Desktop\\programascnc\\centro"
   },
   {
     "nome": "torno",
-    "endereco": "C:\\Users\\Caio\\Desktop\\Programas\\Torno"
+    "endereco": "C:\\Users\\Caio\\Desktop\\programascnc\\torno"
   },
   {
     "nome": "backup",
-    "endereco": "C:\\Users\\Caio\\Desktop\\Programas\\Backup"
+    "endereco": "C:\\Users\\Caio\\Desktop\\programascnc\\Backup"
   }
 ]
