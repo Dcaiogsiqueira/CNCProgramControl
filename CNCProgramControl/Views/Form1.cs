@@ -18,9 +18,24 @@ namespace CNCProgramControl
         bool move = false;
         Point startPosition;
         string endereco = "";
+        string escolha = "";
+        int i = 0;
+        string enderecoCompleto = "";
         public Form1()
         {
             InitializeComponent();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Control | Keys.F4:
+                    Application.Exit();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         /// <summary>
@@ -60,7 +75,7 @@ namespace CNCProgramControl
         /// <returns></returns>
         public int Escolha(string escolha)
         {
-            int i = 0;
+            
 
             switch (escolha)
             {
@@ -68,12 +83,14 @@ namespace CNCProgramControl
                     i = 0;
                     if (BtnTorno.Visible)
                     {
+                        PnlProcurar.Visible = true;
                         BtnCentro.BackColor = Color.FromArgb(83, 147, 244);
                         BtnTorno.Visible = false;
                         BtnBackup.Visible = false;
                     }
                     else
                     {
+                        PnlProcurar.Visible = false;
                         BtnCentro.BackColor = Color.FromArgb(0, 80, 200);
                         BtnTorno.Visible = true;
                         BtnBackup.Visible = true;
@@ -83,6 +100,7 @@ namespace CNCProgramControl
                     i = 1;
                     if (BtnCentro.Visible)
                     {
+                        PnlProcurar.Visible = true;
                         BtnTorno.BackColor = Color.FromArgb(83, 147, 244);
                         BtnTorno.Location = new System.Drawing.Point(6, 9);
                         BtnCentro.Visible = false;
@@ -90,6 +108,7 @@ namespace CNCProgramControl
                     }
                     else
                     {
+                        PnlProcurar.Visible = false;
                         BtnTorno.BackColor = Color.FromArgb(0, 80, 200);
                         BtnTorno.Location = new System.Drawing.Point(87, 9);
                         BtnCentro.Visible = true;
@@ -100,6 +119,7 @@ namespace CNCProgramControl
                     i = 2;
                     if (BtnCentro.Visible)
                     {
+                        PnlProcurar.Visible = true;
                         BtnBackup.BackColor = Color.FromArgb(83, 147, 244);
                         BtnBackup.Location = new System.Drawing.Point(6, 9);
                         BtnCentro.Visible = false;
@@ -107,6 +127,7 @@ namespace CNCProgramControl
                     }
                     else
                     {
+                        PnlProcurar.Visible = false;
                         BtnBackup.BackColor = Color.FromArgb(0, 80, 200);
                         BtnBackup.Location = new System.Drawing.Point(168, 9);
                         BtnCentro.Visible = true;
@@ -143,11 +164,14 @@ namespace CNCProgramControl
         /// <param name="e"></param>
         private void BtnCentro_Click(object sender, EventArgs e)
         {
+            enderecoCompleto = "";
             if (BtnTorno.Visible)
             {
-                PreencherList("CENTRO");
+                escolha = "CENTRO";
+                PreencherList(escolha);
             } else {
-                PreencherList("CENTRO");
+                PreencherList(escolha);
+                escolha = "";
                 listProgram.Items.Clear();
             }
         }
@@ -160,13 +184,16 @@ namespace CNCProgramControl
         /// <param name="e"></param>
         private void BtnTorno_Click(object sender, EventArgs e)
         {
+            enderecoCompleto = "";
             if (BtnCentro.Visible)
             {
-                PreencherList("TORNO");
+                escolha = "TORNO";
+                PreencherList(escolha);
             }
             else
             {
-                PreencherList("TORNO");
+                PreencherList(escolha);
+                escolha = "";
                 listProgram.Items.Clear();
             }
         }
@@ -179,13 +206,16 @@ namespace CNCProgramControl
         /// <param name="e"></param>
         private void BtnBackup_Click(object sender, EventArgs e)
         {
+            enderecoCompleto = "";
             if (BtnCentro.Visible)
             {
-                PreencherList("BACKUP");
+                escolha = "BACKUP";
+                PreencherList(escolha);
             }
             else
             {
                 PreencherList("BACKUP");
+                escolha = "";
                 listProgram.Items.Clear();
             }
         }
@@ -241,8 +271,125 @@ namespace CNCProgramControl
         /// <param name="e"></param>
         private void listProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader(endereco + "\\" + listProgram.SelectedItem.ToString());
+            enderecoCompleto = endereco + "\\" + listProgram.SelectedItem.ToString();
+            label1.Text = enderecoCompleto;
+            StreamReader sr = new StreamReader(enderecoCompleto);
             RTBPrograma.Text = sr.ReadToEnd();
+            sr.Dispose();
+        }
+
+        public void ProcurarPrograma(string escolha)
+        {
+            int i = Escolha(escolha);
+
+            var json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\diretorios.json");
+            var diretorio = JsonConvert.DeserializeObject<List<Diretorio>>(json);
+            endereco = diretorio[i].Endereco;
+            DirectoryInfo dir_files = new DirectoryInfo(endereco);
+            FileInfo[] files2 = dir_files.GetFiles("*", SearchOption.TopDirectoryOnly);
+            listProgram.Items.Clear();
+
+            foreach (var fil in files2) {
+                using (StreamReader stream = new StreamReader(fil.FullName))
+                {
+                    string str = stream.ReadToEnd().ToUpper();
+                    if (str.Contains(TxtProcurar.Text))
+                    {
+                        listProgram.Items.Add(fil.Name);
+                    }
+                }
+            } 
+        }
+
+        private void TxtProcurar_KeyUp(object sender, KeyEventArgs e)
+        {
+            var json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\diretorios.json");
+            var diretorio = JsonConvert.DeserializeObject<List<Diretorio>>(json);
+            endereco = diretorio[i].Endereco;
+            DirectoryInfo dir_files = new DirectoryInfo(endereco);
+            FileInfo[] files2 = dir_files.GetFiles("*", SearchOption.TopDirectoryOnly);
+            listProgram.Items.Clear();
+
+            foreach (var fil in files2)
+            {
+                using (StreamReader stream = new StreamReader(fil.FullName))
+                {
+                    string str = stream.ReadToEnd().ToUpper();
+                    if (str.Contains(TxtProcurar.Text))
+                    {
+                        listProgram.Items.Add(fil.Name);
+                    }
+                }
+            }
+        }
+
+        private void CriarNovo()
+        {
+            try
+            {
+                if(!string.IsNullOrEmpty(this.RTBPrograma.Text))
+                {
+                    this.RTBPrograma.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Não tem conteudo para salvar!");
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void SalvarArquivo()
+        {
+            DialogResult decisao = MessageBox.Show("Deseja Salvar as Alterações?", "Salvar", MessageBoxButtons.YesNo);
+            if (decisao == DialogResult.Yes)
+            {
+                File.WriteAllText(enderecoCompleto, this.RTBPrograma.Text);
+            }
+            else
+            {
+                MessageBox.Show("O arquivo não foi salvo!");
+            }
+        }
+
+        private void BtnSalvar_Click(object sender, EventArgs e)
+        {
+            SalvarArquivo();
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            DialogResult decisao = MessageBox.Show("Deseja editar o programa: " + listProgram.SelectedItem.ToString() + "?", "Editar", MessageBoxButtons.YesNo);
+            if (decisao == DialogResult.Yes)
+            {
+                RTBPrograma.ReadOnly = false;
+                BtnSalvar.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("O arquivo não foi salvo!");
+            }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult decisao = MessageBox.Show("Deseja cancelar a edição do programa: " + listProgram.SelectedItem.ToString() + "?", "Editar", MessageBoxButtons.YesNo);
+            if (decisao == DialogResult.Yes)
+            {
+                RTBPrograma.ReadOnly = false;
+                BtnSalvar.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("O arquivo não foi salvo!");
+            }
         }
     }
 }
