@@ -23,6 +23,12 @@ namespace CNCProgramControl
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Região responsavel pelo movimento do programa quando segurado pelo mouse no
+        /// painel superior
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         #region PanelMove
 
         private void PnlTop_MouseDown(object sender, MouseEventArgs e)
@@ -47,12 +53,16 @@ namespace CNCProgramControl
 
         #endregion
 
-        public void PreencherList(string escolha)
+        /// <summary>
+        /// Através da escolha do usuario modifica o comportamento do programa
+        /// </summary>
+        /// <param name="escolha"></param>
+        /// <returns></returns>
+        public int Escolha(string escolha)
         {
-            
             int i = 0;
-             
-            switch(escolha)
+
+            switch (escolha)
             {
                 case "CENTRO":
                     i = 0;
@@ -104,6 +114,18 @@ namespace CNCProgramControl
                     }
                     break;
             }
+            return i;
+        }
+
+        /// <summary>
+        /// Acessando o método de escolha recebe o diretorio a ser acessado
+        /// preenchendo a lista de programas.
+        /// </summary>
+        /// <param name="escolha"></param>
+        public void PreencherList(string escolha)
+        {
+            int i = Escolha(escolha);
+            
             var json = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\diretorios.json");
             var diretorio = JsonConvert.DeserializeObject<List<Diretorio>>(json);
             endereco = diretorio[i].Endereco;
@@ -112,6 +134,13 @@ namespace CNCProgramControl
             listProgram.Items.Clear();
             foreach (var fil in files2) { listProgram.Items.Add(fil.Name); }
         }
+
+        /// <summary>
+        /// Através do clique do botão é chamado o método PreencherList passando a string
+        /// "CENTRO" caso o botão já tenha sido clicado a lista de programa é apagada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCentro_Click(object sender, EventArgs e)
         {
             if (BtnTorno.Visible)
@@ -123,6 +152,12 @@ namespace CNCProgramControl
             }
         }
 
+        /// <summary>
+        /// Através do clique do botão é chamado o método PreencherList passando a string
+        /// "TORNO" caso o botão já tenha sido clicado a lista de programa é apagada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnTorno_Click(object sender, EventArgs e)
         {
             if (BtnCentro.Visible)
@@ -136,6 +171,12 @@ namespace CNCProgramControl
             }
         }
 
+        /// <summary>
+        /// Através do clique do botão é chamado o método PreencherList passando a string
+        /// "BACKUP" caso o botão já tenha sido clicado a lista de programa é apagada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnBackup_Click(object sender, EventArgs e)
         {
             if (BtnCentro.Visible)
@@ -149,7 +190,11 @@ namespace CNCProgramControl
             }
         }
 
-
+        /// <summary>
+        /// Maximiza a aplicação preenchendo a tela.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnMaximizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
@@ -157,6 +202,11 @@ namespace CNCProgramControl
             BtnRestaurar.Visible = true;
         }
 
+        /// <summary>
+        /// Restaura o tamanho da aplicação ao padrão.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnRestaurar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -164,16 +214,31 @@ namespace CNCProgramControl
             BtnRestaurar.Visible = false;
         }
 
+        /// <summary>
+        /// Minimiza a aplicação.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
+        /// <summary>
+        /// Fecha a aplicação.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnFechar_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Preenche o texto dentro do RTB conforme o arquivo selecionado na lista de programas.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
             StreamReader sr = new StreamReader(endereco + "\\" + listProgram.SelectedItem.ToString());
