@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CNCProgramControl.Serialization
+namespace CNCProgramControl.Classes
 {
     public class Diretorio
     {
@@ -13,5 +12,3 @@ namespace CNCProgramControl.Serialization
         public string Endereco { get; set; }
     }
 }
-
-    
