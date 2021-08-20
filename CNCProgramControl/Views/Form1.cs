@@ -49,19 +49,22 @@ namespace CNCProgramControl
 
         public void PreencherList(string escolha)
         {
+            
             int i = 0;
-
+             
             switch(escolha)
             {
                 case "CENTRO":
                     i = 0;
                     if (BtnTorno.Visible)
                     {
+                        BtnCentro.BackColor = Color.FromArgb(83, 147, 244);
                         BtnTorno.Visible = false;
                         BtnBackup.Visible = false;
                     }
                     else
                     {
+                        BtnCentro.BackColor = Color.FromArgb(0, 80, 200);
                         BtnTorno.Visible = true;
                         BtnBackup.Visible = true;
                     }
@@ -70,12 +73,14 @@ namespace CNCProgramControl
                     i = 1;
                     if (BtnCentro.Visible)
                     {
+                        BtnTorno.BackColor = Color.FromArgb(83, 147, 244);
                         BtnTorno.Location = new System.Drawing.Point(6, 9);
                         BtnCentro.Visible = false;
                         BtnBackup.Visible = false;
                     }
                     else
                     {
+                        BtnTorno.BackColor = Color.FromArgb(0, 80, 200);
                         BtnTorno.Location = new System.Drawing.Point(87, 9);
                         BtnCentro.Visible = true;
                         BtnBackup.Visible = true;
@@ -85,12 +90,14 @@ namespace CNCProgramControl
                     i = 2;
                     if (BtnCentro.Visible)
                     {
+                        BtnBackup.BackColor = Color.FromArgb(83, 147, 244);
                         BtnBackup.Location = new System.Drawing.Point(6, 9);
                         BtnCentro.Visible = false;
                         BtnTorno.Visible = false;
                     }
                     else
                     {
+                        BtnBackup.BackColor = Color.FromArgb(0, 80, 200);
                         BtnBackup.Location = new System.Drawing.Point(168, 9);
                         BtnCentro.Visible = true;
                         BtnTorno.Visible = true;

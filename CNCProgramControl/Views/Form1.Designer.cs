@@ -39,14 +39,14 @@ namespace CNCProgramControl
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnTorno = new System.Windows.Forms.Button();
             this.PnlConteudo = new System.Windows.Forms.Panel();
-            this.RTBPrograma = new System.Windows.Forms.RichTextBox();
             this.PnlLateral = new System.Windows.Forms.Panel();
+            this.RTBPrograma = new System.Windows.Forms.RichTextBox();
             this.PnlTop = new System.Windows.Forms.Panel();
+            this.BtnFechar = new System.Windows.Forms.Button();
             this.BtnMinimizar = new System.Windows.Forms.Button();
             this.BtnRestaurar = new System.Windows.Forms.Button();
             this.BtnMaximizar = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.BtnFechar = new System.Windows.Forms.Button();
             this.PnlConteudo.SuspendLayout();
             this.PnlLateral.SuspendLayout();
             this.PnlTop.SuspendLayout();
@@ -120,6 +120,16 @@ namespace CNCProgramControl
             this.PnlConteudo.Size = new System.Drawing.Size(1052, 787);
             this.PnlConteudo.TabIndex = 0;
             // 
+            // PnlLateral
+            // 
+            this.PnlLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.PnlLateral.Controls.Add(this.listProgram);
+            this.PnlLateral.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PnlLateral.Location = new System.Drawing.Point(0, 41);
+            this.PnlLateral.Name = "PnlLateral";
+            this.PnlLateral.Size = new System.Drawing.Size(162, 746);
+            this.PnlLateral.TabIndex = 6;
+            // 
             // RTBPrograma
             // 
             this.RTBPrograma.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -132,16 +142,6 @@ namespace CNCProgramControl
             this.RTBPrograma.Size = new System.Drawing.Size(872, 684);
             this.RTBPrograma.TabIndex = 7;
             this.RTBPrograma.Text = "";
-            // 
-            // PnlLateral
-            // 
-            this.PnlLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.PnlLateral.Controls.Add(this.listProgram);
-            this.PnlLateral.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PnlLateral.Location = new System.Drawing.Point(0, 41);
-            this.PnlLateral.Name = "PnlLateral";
-            this.PnlLateral.Size = new System.Drawing.Size(162, 746);
-            this.PnlLateral.TabIndex = 6;
             // 
             // PnlTop
             // 
@@ -161,6 +161,20 @@ namespace CNCProgramControl
             this.PnlTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseDown);
             this.PnlTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseMove);
             this.PnlTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseUp);
+            // 
+            // BtnFechar
+            // 
+            this.BtnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnFechar.BackgroundImage")));
+            this.BtnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnFechar.FlatAppearance.BorderSize = 0;
+            this.BtnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFechar.Location = new System.Drawing.Point(1025, 9);
+            this.BtnFechar.Name = "BtnFechar";
+            this.BtnFechar.Size = new System.Drawing.Size(20, 20);
+            this.BtnFechar.TabIndex = 9;
+            this.BtnFechar.UseVisualStyleBackColor = true;
+            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
             // 
             // BtnMinimizar
             // 
@@ -210,20 +224,6 @@ namespace CNCProgramControl
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // BtnFechar
-            // 
-            this.BtnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnFechar.BackgroundImage")));
-            this.BtnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BtnFechar.FlatAppearance.BorderSize = 0;
-            this.BtnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFechar.Location = new System.Drawing.Point(1025, 9);
-            this.BtnFechar.Name = "BtnFechar";
-            this.BtnFechar.Size = new System.Drawing.Size(20, 20);
-            this.BtnFechar.TabIndex = 9;
-            this.BtnFechar.UseVisualStyleBackColor = true;
-            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -243,10 +243,7 @@ namespace CNCProgramControl
 
         #endregion
 
-        public System.Windows.Forms.ListBox listProgram;
-        private System.Windows.Forms.Button BtnCentro;
-        private System.Windows.Forms.Button BtnBackup;
-        private System.Windows.Forms.Button BtnTorno;
+        private System.Windows.Forms.ListBox listProgram;
         private System.Windows.Forms.Panel PnlConteudo;
         private System.Windows.Forms.Panel PnlLateral;
         private System.Windows.Forms.Panel PnlTop;
@@ -256,6 +253,9 @@ namespace CNCProgramControl
         private RichTextBox RTBPrograma;
         private ContextMenuStrip contextMenuStrip1;
         private Button BtnFechar;
+        public Button BtnCentro;
+        public Button BtnBackup;
+        public Button BtnTorno;
     }
 }
 
