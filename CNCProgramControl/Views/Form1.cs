@@ -21,6 +21,7 @@ namespace CNCProgramControl
         string escolha = "";
         int i = 0;
         string enderecoCompleto = "";
+        bool isnovo;
         public Form1()
         {
             InitializeComponent();
@@ -90,6 +91,7 @@ namespace CNCProgramControl
                     }
                     else
                     {
+                        RTBPrograma.Clear();
                         PnlProcurar.Visible = false;
                         BtnCentro.BackColor = Color.FromArgb(0, 80, 200);
                         BtnTorno.Visible = true;
@@ -108,6 +110,7 @@ namespace CNCProgramControl
                     }
                     else
                     {
+                        RTBPrograma.Clear();
                         PnlProcurar.Visible = false;
                         BtnTorno.BackColor = Color.FromArgb(0, 80, 200);
                         BtnTorno.Location = new System.Drawing.Point(87, 9);
@@ -127,6 +130,7 @@ namespace CNCProgramControl
                     }
                     else
                     {
+                        RTBPrograma.Clear();
                         PnlProcurar.Visible = false;
                         BtnBackup.BackColor = Color.FromArgb(0, 80, 200);
                         BtnBackup.Location = new System.Drawing.Point(168, 9);
@@ -164,15 +168,17 @@ namespace CNCProgramControl
         /// <param name="e"></param>
         private void BtnCentro_Click(object sender, EventArgs e)
         {
-            enderecoCompleto = "";
             if (BtnTorno.Visible)
             {
                 escolha = "CENTRO";
                 PreencherList(escolha);
+                BtnNovo.Visible = true;
             } else {
                 PreencherList(escolha);
                 escolha = "";
                 listProgram.Items.Clear();
+                BtnEditar.Visible = false;
+                BtnNovo.Visible = false;
             }
         }
 
@@ -184,17 +190,19 @@ namespace CNCProgramControl
         /// <param name="e"></param>
         private void BtnTorno_Click(object sender, EventArgs e)
         {
-            enderecoCompleto = "";
             if (BtnCentro.Visible)
             {
                 escolha = "TORNO";
                 PreencherList(escolha);
+                BtnNovo.Visible = true;
             }
             else
             {
                 PreencherList(escolha);
                 escolha = "";
                 listProgram.Items.Clear();
+                BtnEditar.Visible = false;
+                BtnNovo.Visible = false;
             }
         }
 
@@ -206,9 +214,9 @@ namespace CNCProgramControl
         /// <param name="e"></param>
         private void BtnBackup_Click(object sender, EventArgs e)
         {
-            enderecoCompleto = "";
             if (BtnCentro.Visible)
             {
+                BtnNovo.Visible = true;
                 escolha = "BACKUP";
                 PreencherList(escolha);
             }
@@ -217,6 +225,9 @@ namespace CNCProgramControl
                 PreencherList("BACKUP");
                 escolha = "";
                 listProgram.Items.Clear();
+                BtnNovo.Visible = false;
+                BtnEditar.Visible = false;
+                BtnNovo.Visible = false;
             }
         }
 
@@ -271,8 +282,8 @@ namespace CNCProgramControl
         /// <param name="e"></param>
         private void listProgram_SelectedIndexChanged(object sender, EventArgs e)
         {
+            BtnEditar.Visible = true;
             enderecoCompleto = endereco + "\\" + listProgram.SelectedItem.ToString();
-            label1.Text = enderecoCompleto;
             StreamReader sr = new StreamReader(enderecoCompleto);
             RTBPrograma.Text = sr.ReadToEnd();
             sr.Dispose();
@@ -366,29 +377,81 @@ namespace CNCProgramControl
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
+            isnovo = false;
             DialogResult decisao = MessageBox.Show("Deseja editar o programa: " + listProgram.SelectedItem.ToString() + "?", "Editar", MessageBoxButtons.YesNo);
             if (decisao == DialogResult.Yes)
             {
                 RTBPrograma.ReadOnly = false;
+                BtnEditar.Visible = false;
                 BtnSalvar.Visible = true;
+                BtnCancelar.Visible = true;
             }
             else
             {
-                MessageBox.Show("O arquivo não foi salvo!");
+                MessageBox.Show("Edição Cancelada!");
             }
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult decisao = MessageBox.Show("Deseja cancelar a edição do programa: " + listProgram.SelectedItem.ToString() + "?", "Editar", MessageBoxButtons.YesNo);
-            if (decisao == DialogResult.Yes)
+            if (!isnovo)
             {
-                RTBPrograma.ReadOnly = false;
-                BtnSalvar.Visible = true;
+                DialogResult decisao = MessageBox.Show("Deseja cancelar a edição do programa: " + listProgram.SelectedItem.ToString() + "?", "Cancelar", MessageBoxButtons.YesNo);
+                if (decisao == DialogResult.Yes)
+                {
+                    RTBPrograma.ReadOnly = true;
+                    BtnSalvar.Visible = false;
+                    BtnCancelar.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Edição Cancelada!");
+                }
             }
             else
             {
-                MessageBox.Show("O arquivo não foi salvo!");
+                DialogResult decisao = MessageBox.Show("Deseja cancelar o novo programa? ", "Cancelar", MessageBoxButtons.YesNo);
+                if (decisao == DialogResult.Yes)
+                {
+                    RTBPrograma.ReadOnly = true;
+                    BtnNovo.Visible = true;
+                    BtnSalvar.Visible = false;
+                    BtnCancelar.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Edição Cancelada!");
+                }
+            }
+        }
+
+        private void BtnNovo_Click(object sender, EventArgs e)
+        {
+            isnovo = true;
+            DialogResult decisao = MessageBox.Show("Deseja criar um novo programa?","Novo", MessageBoxButtons.YesNo);
+            if (decisao == DialogResult.Yes)
+            {
+                if (BtnCentro.Visible == true) BtnCentro_Click(sender, e);
+                if (BtnTorno.Visible == true) BtnTorno_Click(sender, e);
+                if (BtnBackup.Visible == true) BtnBackup_Click(sender, e);
+
+                RTBPrograma.ReadOnly = false;
+                BtnNovo.Visible = false;
+                BtnSalvar.Visible = true;
+                BtnCancelar.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Edição Cancelada!");
+            }
+            if (!string.IsNullOrEmpty(this.RTBPrograma.Text))
+            {
+
+                RTBPrograma.Clear();
+            }
+            else
+            {
+
             }
         }
     }

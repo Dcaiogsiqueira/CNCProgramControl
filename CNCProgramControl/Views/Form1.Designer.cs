@@ -39,6 +39,9 @@ namespace CNCProgramControl
             this.BtnBackup = new System.Windows.Forms.Button();
             this.BtnTorno = new System.Windows.Forms.Button();
             this.PnlConteudo = new System.Windows.Forms.Panel();
+            this.BtnNovo = new System.Windows.Forms.Button();
+            this.BtnEditar = new System.Windows.Forms.Button();
+            this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.PnlLateral = new System.Windows.Forms.Panel();
             this.PnlProcurar = new System.Windows.Forms.Panel();
@@ -47,14 +50,11 @@ namespace CNCProgramControl
             this.LblProcurar = new System.Windows.Forms.Label();
             this.RTBPrograma = new System.Windows.Forms.RichTextBox();
             this.PnlTop = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.BtnFechar = new System.Windows.Forms.Button();
             this.BtnMinimizar = new System.Windows.Forms.Button();
             this.BtnRestaurar = new System.Windows.Forms.Button();
             this.BtnMaximizar = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.BtnEditar = new System.Windows.Forms.Button();
-            this.BtnCancelar = new System.Windows.Forms.Button();
             this.PnlConteudo.SuspendLayout();
             this.PnlLateral.SuspendLayout();
             this.PnlProcurar.SuspendLayout();
@@ -121,8 +121,9 @@ namespace CNCProgramControl
             // PnlConteudo
             // 
             this.PnlConteudo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
-            this.PnlConteudo.Controls.Add(this.BtnCancelar);
+            this.PnlConteudo.Controls.Add(this.BtnNovo);
             this.PnlConteudo.Controls.Add(this.BtnEditar);
+            this.PnlConteudo.Controls.Add(this.BtnCancelar);
             this.PnlConteudo.Controls.Add(this.BtnSalvar);
             this.PnlConteudo.Controls.Add(this.PnlLateral);
             this.PnlConteudo.Controls.Add(this.RTBPrograma);
@@ -132,6 +133,51 @@ namespace CNCProgramControl
             this.PnlConteudo.Name = "PnlConteudo";
             this.PnlConteudo.Size = new System.Drawing.Size(1119, 851);
             this.PnlConteudo.TabIndex = 0;
+            // 
+            // BtnNovo
+            // 
+            this.BtnNovo.FlatAppearance.BorderSize = 0;
+            this.BtnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnNovo.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnNovo.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.BtnNovo.Location = new System.Drawing.Point(168, 47);
+            this.BtnNovo.Name = "BtnNovo";
+            this.BtnNovo.Size = new System.Drawing.Size(75, 33);
+            this.BtnNovo.TabIndex = 11;
+            this.BtnNovo.Text = "Novo";
+            this.BtnNovo.UseVisualStyleBackColor = true;
+            this.BtnNovo.Visible = false;
+            this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
+            // 
+            // BtnEditar
+            // 
+            this.BtnEditar.FlatAppearance.BorderSize = 0;
+            this.BtnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEditar.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnEditar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.BtnEditar.Location = new System.Drawing.Point(255, 47);
+            this.BtnEditar.Name = "BtnEditar";
+            this.BtnEditar.Size = new System.Drawing.Size(75, 33);
+            this.BtnEditar.TabIndex = 9;
+            this.BtnEditar.Text = "Editar";
+            this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Visible = false;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
+            // 
+            // BtnCancelar
+            // 
+            this.BtnCancelar.FlatAppearance.BorderSize = 0;
+            this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCancelar.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnCancelar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.BtnCancelar.Location = new System.Drawing.Point(252, 47);
+            this.BtnCancelar.Name = "BtnCancelar";
+            this.BtnCancelar.Size = new System.Drawing.Size(78, 33);
+            this.BtnCancelar.TabIndex = 10;
+            this.BtnCancelar.Text = "Cancelar";
+            this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Visible = false;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnSalvar
             // 
@@ -216,7 +262,6 @@ namespace CNCProgramControl
             // PnlTop
             // 
             this.PnlTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.PnlTop.Controls.Add(this.label1);
             this.PnlTop.Controls.Add(this.BtnFechar);
             this.PnlTop.Controls.Add(this.BtnMinimizar);
             this.PnlTop.Controls.Add(this.BtnRestaurar);
@@ -232,17 +277,6 @@ namespace CNCProgramControl
             this.PnlTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseDown);
             this.PnlTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseMove);
             this.PnlTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseUp);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(371, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 25);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "label1";
             // 
             // BtnFechar
             // 
@@ -306,34 +340,6 @@ namespace CNCProgramControl
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // BtnEditar
-            // 
-            this.BtnEditar.FlatAppearance.BorderSize = 0;
-            this.BtnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEditar.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnEditar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnEditar.Location = new System.Drawing.Point(168, 47);
-            this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(75, 33);
-            this.BtnEditar.TabIndex = 9;
-            this.BtnEditar.Text = "Editar";
-            this.BtnEditar.UseVisualStyleBackColor = true;
-            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
-            // 
-            // BtnCancelar
-            // 
-            this.BtnCancelar.FlatAppearance.BorderSize = 0;
-            this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCancelar.Font = new System.Drawing.Font("Comic Sans MS", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnCancelar.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.BtnCancelar.Location = new System.Drawing.Point(249, 47);
-            this.BtnCancelar.Name = "BtnCancelar";
-            this.BtnCancelar.Size = new System.Drawing.Size(78, 33);
-            this.BtnCancelar.TabIndex = 10;
-            this.BtnCancelar.Text = "Cancelar";
-            this.BtnCancelar.UseVisualStyleBackColor = true;
-            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -349,7 +355,6 @@ namespace CNCProgramControl
             this.PnlProcurar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PnlTop.ResumeLayout(false);
-            this.PnlTop.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -374,10 +379,10 @@ namespace CNCProgramControl
         private PictureBox pictureBox1;
         private TextBox TxtProcurar;
         private Label LblProcurar;
-        private Label label1;
         public Button BtnSalvar;
         public Button BtnEditar;
         public Button BtnCancelar;
+        public Button BtnNovo;
     }
 }
 
